@@ -2,7 +2,7 @@ const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 const path = require('path');
 const exphbs = require('express-handlebars');
-
+const indexRouter = require('./routes/index/index');
 const app = express();
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
@@ -12,38 +12,33 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.get('/', (req, res) => {
-    res.send('Homepage');
-})
-
-app.get('/index', (req, res) => {
-    res.send('index');
-})
+// Index Router
+app.get('/', indexRouter);
 
 
 //404 page middleware Shoulkd be put below
 
-app.use((req, res, next) => {
-    res.render('404', { pagename: "Page not found" });
-});
+// app.use((req, res, next) => {
+//     res.render('404', { pagename: "Page not found" });
+// });
 
 
 
 //fake schema
 const typeDefs = gql`
-    type Book {
-        title: String
-    }
+    # type Book {
+    #     title: String
+    # }
 
     type Query {
-        books: Book
+        me: String
     }
 `;
 
 // Fake resolver
 const resolvers = {
     Query: {
-        books: () => "Hello world"
+        me: () => "Hello world from an express app"
     }
 }
 
