@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+    <title>{{pagename}}</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/images/rust_c.jpg">
+</head>
+
+<body>
+    {{!-- Top here could be used to make announcements --}}
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
+            {{#if user}}
+            <li>Hello {{user.username}}</li>
+            {{/if}}
+        </nav>
+    </header>
+
+    {{{body}}}
+
+    {{!-- Footer contents below --}}
+    <footer>
+        <div>
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="/scripts/main.js"></script>
+</body>
+
+</html>
